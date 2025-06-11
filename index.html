@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>澳门乐天资料论坛</title>
+    <title>🇲🇴澳门乐天资料论坛</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/tailwindcss">
@@ -28,45 +28,6 @@
             }
             @keyframes spin {
                 to { transform: rotate(360deg); }
-            }
-            .control-btn {
-                position: fixed;
-                bottom: 1.5rem;
-                right: 1.5rem;
-                z-index: 20;
-                width: 3rem;
-                height: 3rem;
-                border-radius: 50%;
-                background-color: #165DFF;
-                color: white;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-                transition: all 0.2s ease;
-            }
-            .control-btn:hover {
-                transform: scale(1.05);
-                background-color: #1E40AF;
-            }
-            .mobile-status-bar {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 2rem;
-                background-color: rgba(0, 0, 0, 0.5);
-                color: white;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 30;
-                font-size: 0.8rem;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            }
-            .mobile-status-bar.visible {
-                opacity: 1;
             }
         }
     </style>
@@ -108,11 +69,6 @@
             allowfullscreen
         ></iframe>
     </div>
-    
-    <!-- 全屏控制按钮 -->
-    <button id="fullscreenBtn" class="control-btn">
-        <i class="fa fa-expand"></i>
-    </button>
 
     <script>
         // 获取DOM元素
@@ -120,13 +76,7 @@
         const loadingOverlay = document.getElementById('loadingOverlay');
         const errorMessage = document.getElementById('errorMessage');
         const reloadBtn = document.getElementById('reloadBtn');
-        const fullscreenBtn = document.getElementById('fullscreenBtn');
-        const mobileStatusBar = document.getElementById('mobileStatusBar');
-        const statusText = document.getElementById('statusText');
         
-        // 当前是否为全屏状态
-        let isFullscreen = false;
-
         // iframe加载完成事件
         iframe.addEventListener('load', function() {
             loadingOverlay.classList.add('hidden');
@@ -144,56 +94,6 @@
             loadingOverlay.classList.remove('hidden');
             iframe.src = iframe.src;
         });
-
-        // 全屏按钮点击事件
-        fullscreenBtn.addEventListener('click', function() {
-            const container = document.querySelector('.iframe-container');
-            
-            if (!isFullscreen) {
-                // 进入全屏模式
-                if (container.requestFullscreen) {
-                    container.requestFullscreen();
-                } else if (container.webkitRequestFullscreen) {
-                    container.webkitRequestFullscreen();
-                } else if (container.msRequestFullscreen) {
-                    container.msRequestFullscreen();
-                }
-                
-                // 更新UI状态
-                fullscreenBtn.innerHTML = '<i class="fa fa-compress"></i>';
-                isFullscreen = true;
-            } else {
-                // 退出全屏模式
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-                
-                // 更新UI状态
-                fullscreenBtn.innerHTML = '<i class="fa fa-expand"></i>';
-                isFullscreen = false;
-            }
-        });
-
-        // 监听全屏状态变化
-        document.addEventListener('fullscreenchange', handleFullscreenChange);
-        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-        document.addEventListener('mozfullscreenchange', handleFullscreenChange);
-        document.addEventListener('MSFullscreenChange', handleFullscreenChange);
-
-        function handleFullscreenChange() {
-            if (!document.fullscreenElement && 
-                !document.webkitIsFullScreen && 
-                !document.mozFullScreen && 
-                !document.msFullscreenElement) {
-                // 已退出全屏
-                fullscreenBtn.innerHTML = '<i class="fa fa-expand"></i>';
-                isFullscreen = false;
-            }
-        }
     </script>
 </body>
 </html>
